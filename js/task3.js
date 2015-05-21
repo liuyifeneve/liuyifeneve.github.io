@@ -561,12 +561,12 @@ window.onload = function(){
 	function screenadjst(){
 		if(document.documentElement.clientHeight>537){
 			$('#index').style.height = document.documentElement.clientHeight-57+'px';
-			$('#tasks').style.height = document.documentElement.clientHeight-93+'px';
+			$('#tasks').style.height = document.documentElement.clientHeight-92+'px';
 			$('#tasktext').style.height = document.documentElement.clientHeight-177+'px';
 		}
 		else{
 			$('#index').style.height = '480px';
-			$('#tasks').style.height = '444px';
+			$('#tasks').style.height = '445px';
 			$('#tasktext').style.height = '360px';
 		}
 		if(document.documentElement.clientWidth>980){

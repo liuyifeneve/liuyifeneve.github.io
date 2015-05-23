@@ -268,10 +268,6 @@ window.onload = function(){
 		$('#edittext').innerHTML = '请在此输入详细内容';
 		$('#save').style.display = 'inline';
 		$('#cancel').style.display = 'inline';
-		$('#edititle').style.width = parseInt($('#textright').style.width)-150+'px';
-		$('#editdate').style.width = parseInt($('#textright').style.width)-150+'px';
-		$('#edittext').style.width = parseInt($('#textright').style.width)-50+'px';
-		$('#edittext').style.height = '300px';
 		editlock = true;
 	}
 	$('#edit').onclick = function(){
@@ -290,10 +286,6 @@ window.onload = function(){
 		$('#edittext').innerHTML = temp.text;
 		$('#save').style.display = 'inline';
 		$('#cancel').style.display = 'inline';
-		$('#edititle').style.width = parseInt($('#textright').style.width)-150+'px';
-		$('#editdate').style.width = parseInt($('#textright').style.width)-150+'px';
-		$('#edittext').style.width = parseInt($('#textright').style.width)-50+'px';
-		$('#edittext').style.height = '300px';
 		editlock = true;
 	}
 	$('#finish').onclick = function(){
@@ -575,9 +567,10 @@ window.onload = function(){
 		else{
 			$('#textright').style.width = '580px';
 		}
-		$('#edititle').style.width = parseInt($('#textright').style.width)-150+'px';
-		$('#editdate').style.width = parseInt($('#textright').style.width)-150+'px';
+		$('#edititle').style.width = parseInt($('#textright').style.width)-200+'px';
+		$('#editdate').style.width = parseInt($('#textright').style.width)-200+'px';
 		$('#edittext').style.width = parseInt($('#textright').style.width)-50+'px';
+		$('#edittext').style.height = '300px';
 	}
 	function datasave(){
 		tasklist[0]=new Object();

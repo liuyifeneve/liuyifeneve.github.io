@@ -1,182 +1,194 @@
 @charset "utf-8";
 /* CSS Document */
-*{margin:0px; padding:0px; text-decoration:none;list-style-type:none;}
-body{
-	min-width:980px;
-	margin:0 auto;
-	background-color:white;}
-h1{
-	background-color:#90F;
-	color:white;
-	padding:10px;
+* {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  list-style-type: none;
 }
-.mainframe{
-	background-color:#DADBF5;
+body {
+  min-width: 980px;
+  margin: 0 auto;
+  background-color: #ffffff;
 }
-#index{
-	background-color:#CCF;
-	border-right:solid grey 1px;
-	width:199px;
-	text-indent:10px;
-	font-size:16px;
-	line-height:30px;
-	position:absolute;
+h1 {
+  background-color: #9900ff;
+  color: white;
+  padding: 10px;
 }
-#allclass{
-	cursor:pointer;
+.mainframe {
+  background-color: #dadbf5;
 }
-#allclass em{
-	display:none;
+.mainframe #index {
+  background-color: #ccccff;
+  border-right: solid grey 1px;
+  width: 199px;
+  text-indent: 10px;
+  font-size: 16px;
+  line-height: 30px;
+  position: absolute;
 }
-.project{cursor:pointer;}
-.project img{
-	position:relative;
-	margin:0px 10px 0px 5px;
-	top:5px;
+#allclass {
+  cursor: pointer;
 }
-.item{
-	background-color:#CCF;
+#allclass em {
+  display: none;
 }
-.item input{
-	display:none;
+.project {
+  cursor: pointer;
 }
-
-.onitem input{
-	width:20px;
+.project img {
+  position: relative;
+  margin: 0px 10px 0px 5px;
+  top: 5px;
 }
-
-.onproject img{
-	position:relative;
-	margin:0px 10px 0px 5px;
-	top:5px;
+.item {
+  background-color: #ccccff;
 }
-.subclass img{
-	margin:0px 10px 0px 15px;
-	position:relative;
-	top:3px;
+.item input {
+  display: none;
 }
-.addbtn{
-	border-top:solid black 1px;
-	width:100%;
-	position:absolute;
-	bottom:0px;
-	right:0px;
-	line-height:30px;
+.onitem input {
+  width: 20px;
 }
-.addbtn img{
-	cursor:pointer;
+.onproject img {
+  position: relative;
+  margin: 0px 10px 0px 5px;
+  top: 5px;
 }
-#addclass{
-	margin-right:3px;
-	width:40px;
+.subclass img {
+  position: relative;
+  margin: 0px 10px 0px 15px;
+  top: 3px;
 }
-#addtask{
-	margin:0px 3px 0px 10px;
-	width:40px;
+.addbtn {
+  border-top: solid black 1px;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  line-height: 30px;
 }
-#middle{
-	width:199px;
-	border-right:solid grey 1px;
-	position:absolute;
-	left:200px;
+.addbtn img {
+  cursor: pointer;
 }
-#midbtn{
-	background-color:#D0E691;
+#addclass {
+  margin-right: 3px;
+  width: 40px;
 }
-.midbtn{
-	width:50px;
-	margin:10px 5px;
-	border:none;
-	background-color:#fff;
+#addtask {
+  margin: 0px 3px 0px 10px;
+  width: 40px;
 }
-#tasks{
-	background:#F8F9DF;
+#middle {
+  width: 199px;
+  border-right: solid grey 1px;
+  position: absolute;
+  left: 200px;
+  background-color: #f8f9df;
 }
-.task{
-	cursor:pointer;
+#midbtn {
+  background-color: #d0e691;
 }
-.task em{
-	display:none;
+.midbtn {
+  width: 50px;
+  margin: 10px 5px;
+  border: none;
+  background-color: #ffffff;
 }
-.taskdate span{
-	padding-left:10px;
+#tasks {
+  background-color: #f8f9df;
 }
-.taskdate{
-	background:#DAF3E2;
+.task {
+  cursor: pointer;
 }
-.taskdate li{
-	background:#F8F9DF;
-	padding:3px 0px;
-	padding-left:15px;
+.task em {
+  display: none;
 }
-#textright{
-	position:absolute;
-	left:400px;
+.taskdate {
+  background-color: #daf3e2;
 }
-#tasktittle{
-	padding:0 50px 0 10px;
-	background:#A5E0EF;
-	line-height:40px;
-	height:40px;
+.taskdate span {
+  padding-left: 10px;
 }
-#tasktittle em{
-	display:none;
+.taskdate li {
+  background-color: #f8f9df;
+  padding: 3px 0px;
+  padding-left: 15px;
 }
-.editbtn{
-	width:20px;
-	margin:10px;
-	float:right;
-	display:none;
+#textright {
+  background-color: #e2f1f3;
+  position: absolute;
+  left: 400px;
 }
-#taskdate{
-	padding-left:10px;
-	background:#D3E7EF;
-	line-height:40px;
-	height:40px;
+#tasktittle {
+  padding: 0 50px 0 10px;
+  background-color: #a5e0ef;
+  line-height: 40px;
+  height: 40px;
 }
-#tasktext{
-	padding:20px;
-	background:#E2F1F3;
+#tasktittle .invisible {
+  display: none;
 }
-.edittask{
-	display:none;
+#tasktittle .editbtn {
+  width: 20px;
+  margin: 10px;
+  float: right;
+  display: none;
 }
-.savebtn{
-	width:40px;
-	margin-top:20px;
-	margin-right:20px;
-	float:right;
-	display:none;
+.edittask {
+  display: none;
+  color: grey;
 }
-#popBox{
-	padding:20px;
-	width:180px;
-	border:1px solid #cfcfcf;
-	box-shadow:2px 3px 0 rgba(190,190,190,0.3);
-	background-color:#FADEF9;
-	z-index:101;
-	display:none;
-	position:fixed;
-    left:300px;
-    top:200px;
+.invisible {
+  display: none;
 }
-.newcls{
-	margin-bottom:10px;
-	width:170px;
-	display:block;
+#taskdate {
+  padding-left: 10px;
+  background-color: #d3e7ef;
+  line-height: 40px;
+  height: 40px;
 }
-.newbtn{
-	width:40px;
-	margin:10px 18px 0px;
+#tasktext {
+  padding: 20px;
+  background-color: #e2f1f3;
 }
-#mask{
-	width:100%;
-	height:100%;
-	background-color:#000;
-	opacity:0.4;
-	position:absolute;
-	top:0px;
-	left:0px;
-	z-index:50;
-	display:none;
+#tasktext .savebtn {
+  width: 40px;
+  margin-top: 20px;
+  margin-right: 20px;
+  float: right;
+  display: none;
+}
+#popBox {
+  padding: 20px;
+  width: 180px;
+  border: 1px solid #cfcfcf;
+  box-shadow: 2px 3px 0 rgba(190, 190, 190, 0.3);
+  background-color: #fadef9;
+  z-index: 101;
+  display: none;
+  position: fixed;
+  left: 300px;
+  top: 200px;
+}
+#popBox .newcls {
+  margin-bottom: 10px;
+  width: 170px;
+  display: block;
+}
+#popBox .newbtn {
+  width: 40px;
+  margin: 10px 18px 0px;
+}
+#mask {
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.4;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 50;
+  display: none;
 }

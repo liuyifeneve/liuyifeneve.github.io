@@ -15,10 +15,10 @@ window.onload = function(){
 		datasave();
 		for(var i=0; i<tasklist.length;i++){
 			var temp = tasklist[i];
-			var newcls = loaditem(tasklist[i]);
+			var newcls = loaditem(temp);
 			$('#classify').appendChild(newcls);;
 		}
-		$('#allclass').childNodes[0].childNodes[0].innerHTML='所有分类'+'('+taskcount+')';
+		$('#allclass').childNodes[0].childNodes[0].innerHTML='所有任务'+'('+taskcount+')';
 		$('#classify').childNodes[0].innerHTML='分类列表'+'('+taskcount+')';
 		//增加默认分类
 		var dftcls = tasklist[tasklist.length-1];
@@ -30,7 +30,7 @@ window.onload = function(){
 				subclsnum=0;
 				var prtname = $('#dftcls').childNodes[0].childNodes[1].innerHTML.slice(0,-3);
 				var objname = temp.childNodes[1].innerHTML.slice(0,-3);
-				loadtask(prtname,objname);
+				loadtask(prtname,objname,1);
 			}
 		}
 		var temp = JSON.parse(localStorage.getItem('200'));
@@ -50,32 +50,19 @@ window.onload = function(){
 		tasklistnum = tasklist.length-1;
 		screenadjst();
 	}
+	
 	$('#addallcls').onclick=function(){
-		var childsnum = $('#allclass').childNodes.length;
-		if(childsnum>1){
-			for(var i=1; i<childsnum;i++){
-				$('#allclass').removeChild($('#allclass').childNodes[1]);
-			}
-		}
-		else{
-			for(var i=0;i<tasklist.length;i++){
-				for(j=0;j<tasklist[i].task.length;j++){
-					var newclass = document.createElement('ul');
-					$('#allclass').appendChild(newclass);
-					var temp = addsubclass(tasklist[i].task[j]);
-					var newtag = document.createElement('em');
-					newtag.innerHTML = tasklist[i].name;
-					temp.appendChild(newtag);
-					newclass.appendChild(temp);
-
-					temp.onclick = function(){
-						var prtname = this.childNodes[2].innerHTML;
-						var objname = this.childNodes[1].innerHTML.slice(0,-3);
-						loadtask(prtname,objname);
-					}
+		for(var i=0;i<tasklist.length;i++){
+			for(j=0;j<tasklist[i].task.length;j++){
+				if(i==0&&j==0){
+					loadtask(tasklist[i].name,tasklist[i].task[j].name,1);
+				}
+				else{
+					loadtask(tasklist[i].name,tasklist[i].task[j].name,0);
 				}
 			}
 		}
+		
 	}
 	
 	var addclass = $('#addclass');
@@ -99,7 +86,7 @@ window.onload = function(){
 	}
 	
 	$('#newconfirm').onclick = function(){
-		var name = $('#newclsname').value;
+		var name = htmlEncode($('#newclsname').value);
 		if(name == ''){
 				alert('分类名称不能为空!');
 				return;
@@ -186,7 +173,7 @@ window.onload = function(){
 		obj.onclick = function(){ 
 			var prtname = prt.childNodes[0].childNodes[1].innerHTML.slice(0,-3);
 			var objname = obj.childNodes[1].innerHTML.slice(0,-3);
-			loadtask(prtname,objname);
+			loadtask(prtname,objname,1);
 		}
 	}
 	function $(str){
@@ -260,14 +247,20 @@ window.onload = function(){
 		$('#tasktext').childNodes[1].innerHTML = '';
 		$('#edit').style.display = 'none';
 		$('#finish').style.display = 'none';
+		
+		$('#edititle').value='请输入任务名称';
 		$('#edititle').style.display = 'inline';
-		$('#edititle').setAttribute('value','请输入任务名称');
+		
+		$('#editdate').value='请以YYYY-MM-DD格式输入任务创建时间';
 		$('#editdate').style.display = 'inline';
-		$('#editdate').setAttribute('value','请以YYYY-MM-DD格式输入任务创建时间');
+		
+		//$('#edittext').innerHTML = '请在此输入详细内容';
+		$('#edittext').value = '请在此输入详细内容';
 		$('#edittext').style.display = 'inline';
-		$('#edittext').innerHTML = '请在此输入详细内容';
+		
 		$('#save').style.display = 'inline';
 		$('#cancel').style.display = 'inline';
+
 		editlock = true;
 	}
 	$('#edit').onclick = function(){
@@ -279,11 +272,13 @@ window.onload = function(){
 		$('#edit').style.display = 'none';
 		$('#finish').style.display = 'none';
 		$('#edititle').style.display = 'inline';
-		$('#edititle').setAttribute('value',temp.name);
+		//$('#edititle').setAttribute('value',temp.name);
+		$('#edititle').value=temp.name;
 		$('#editdate').style.display = 'inline';
-		$('#editdate').setAttribute('value',temp.date);
+		//$('#editdate').setAttribute('value',temp.date);
+		$('#editdate').value=temp.date;
 		$('#edittext').style.display = 'inline';
-		$('#edittext').innerHTML = temp.text;
+		$('#edittext').value = temp.text;
 		$('#save').style.display = 'inline';
 		$('#cancel').style.display = 'inline';
 		editlock = true;
@@ -309,7 +304,6 @@ window.onload = function(){
 		}
 	}
 	$('#save').onclick = function(){
-		histask='';
 		editlock = false;
 		var flag = $('#tasktittle').childNodes[2].innerHTML;
 		var temp = JSON.parse(localStorage.getItem(flag));
@@ -319,52 +313,54 @@ window.onload = function(){
 			alert('任务名称应小于20个字');
 			return;
 		}
-		else temp.name = $('#edititle').value;
+		else temp.name = htmlEncode($('#edititle').value);
 		
 		if(Regdate.test($('#editdate').value)){
-			temp.date = $('#editdate').value;
+			temp.date = htmlEncode($('#editdate').value);
 		}
 		else{
 			alert('日期格式错误！');
 			return;
 		}
-		if($('#edititle').value.length>500){
+		if($('#edittext').value.length>500){
 			alert('任务内容应小于500个字');
 			return;
 		}
-		else temp.text = $('#edittext').value;
+		else temp.text = htmlEncode($('#edittext').value);
 		temp.done = false;
 		temp.flag = '202';
+		taskcount=0;
 		//假如是新创建的，首先需要判定各个输入值的有效性，其次创建一个新的localStorage，再次将新创建的task加入到列表中
 		if(flag == ''){
 			var myDate = new Date()
-			temp.flag = myDate.getYear().toString()+myDate.getMonth().toString()+myDate.getDate().toString()+myDate.getHours().toString()+myDate.getMinutes().toString()+myDate.getSeconds().toString();
+			temp.flag = myDate.getYear().toString()+myDate.getMonth().toString()+myDate.getDate().toString()+myDate.getHours().toString()+myDate.getMinutes().toString()+myDate.getSeconds().toString(); //根据当前系统时间创建，保证编号的唯一性
 			flag = temp.flag;
 			localStorage.setItem(flag, JSON.stringify(temp));
+			
+			tasklist[tasklistnum].task[subclsnum].item.unshift(flag);
+			loadtask(tasklist[tasklistnum].name,tasklist[tasklistnum].task[subclsnum].name,1);
+			
+			delnum = $('#classify').childNodes.length;
+			for(var i=2; i<delnum;i++){
+				$('#classify').removeChild($('#classify').childNodes[2]);;
+			}
+			
+			for(var i=0; i<tasklist.length;i++){
+				var temp = tasklist[i];
+				var newcls = loaditem(tasklist[i]);
+				$('#classify').appendChild(newcls);
+			}
+			$('#allclass').childNodes[0].childNodes[0].innerHTML='所有任务'+'('+taskcount+')';
+			$('#classify').childNodes[0].innerHTML='分类列表'+'('+taskcount+')';
 		}
 		else{
 			temp.flag = flag;
 			localStorage.setItem(flag, JSON.stringify(temp));
 		}
 		addinfo(flag);
-		tasklist[tasklistnum].task[subclsnum].item.unshift(flag);
-		loadtask(tasklist[tasklistnum].name,tasklist[tasklistnum].task[subclsnum].name);
-		
-		delnum = $('#classify').childNodes.length;
-		for(var i=2; i<delnum;i++){
-			$('#classify').removeChild($('#classify').childNodes[2]);;
-		}
-		
-		for(var i=0; i<tasklist.length;i++){
-			var temp = tasklist[i];
-			var newcls = loaditem(tasklist[i]);
-			$('#classify').appendChild(newcls);
-		}
-		$('#allclass').childNodes[0].childNodes[0].innerHTML='所有分类'+'('+taskcount+')';
-		$('#classify').childNodes[0].innerHTML='分类列表'+'('+taskcount+')';
 	}
+	
 	$('#cancel').onclick = function(){
-		histask='';
 		editlock = false;
 		var flag = $('#tasktittle').childNodes[2].innerHTML;
 		if(flag == ''){
@@ -433,10 +429,12 @@ window.onload = function(){
 			ele['on'+event]=fn;
 		}
 	}
-	function loadtask(prt,obj){
-		var childs=$('#tasks').childNodes;    
-		for(var i=childs.length-1;i>=0;i--){    
-			$('#tasks').removeChild(childs[i]);    
+	function loadtask(prt,obj,clear){
+		if(clear==1){
+			var childs=$('#tasks').childNodes;    
+			for(var i=childs.length-1;i>=0;i--){    
+				$('#tasks').removeChild(childs[i]);    
+			}
 		}
 		var clsname = prt;
 		var taskname = obj;
@@ -448,14 +446,14 @@ window.onload = function(){
 						subclsnum = j;
 						for(var k=0;k<tasklist[i].task[j].item.length;k++){
 							var temp = JSON.parse(localStorage.getItem(tasklist[i].task[j].item[k]));
-							if(k==0){
+							var dates = $('#tasks').childNodes;
+							var aDate = temp.date.split('-');
+							var oDate1 = new Date(aDate[0],aDate[1],aDate[2]);
+							if(dates.length==0){
 								var newul = createNewUL(temp);
 								$('#tasks').appendChild(newul);
 							}
 							else{
-								var dates = $('#tasks').childNodes;
-								var aDate = temp.date.split('-');
-								var oDate1 = new Date(aDate[0],aDate[1],aDate[2]);
 								for(var m=0;m<dates.length;m++){
 									var aDate2 = dates[m].childNodes[0].innerHTML.split('-');
 									var oDate2 = new Date(aDate2[0],aDate2[1],aDate2[2]);
@@ -469,10 +467,12 @@ window.onload = function(){
 										if(temp.done==true) {newli.style.color = 'blue';}
 										else{newli.style.color = 'red'};
 										newli.appendChild(lispan);
-										var flag = document.createElement('em');
+										var flag = document.createElement('span');
 										flag.innerHTML = temp.flag;
+										flag.className = 'invisible';
 										newli.appendChild(flag);
 										addetail(newli);
+										break;
 									}
 									else if(datejudge<0){
 										var newul = createNewUL(temp);
@@ -507,7 +507,8 @@ window.onload = function(){
 		if(temp.done==true) {newli.style.color = 'blue';}
 		else{newli.style.color = 'red'};
 		newli.appendChild(lispan);
-		var flag = document.createElement('em');
+		var flag = document.createElement('span');
+		flag.className = 'invisible';
 		flag.innerHTML = temp.flag;
 		newli.appendChild(flag);
 		addetail(newli);
@@ -551,22 +552,26 @@ window.onload = function(){
 		}
 	}
 	function screenadjst(){
-		if(document.documentElement.clientHeight>537){
-			$('#index').style.height = document.documentElement.clientHeight-57+'px';
-			$('#tasks').style.height = document.documentElement.clientHeight-92+'px';
-			$('#tasktext').style.height = document.documentElement.clientHeight-177+'px';
+		var winW = document.documentElement.clientWidth || document.body.clientWidth;
+        var winH = document.documentElement.clientHeight || document.body.clientHeight;
+		
+		if(winH>537){
+			$('#index').style.height = winH-58+'px';
+			$('#middle').style.height = winH-58+'px';
+			$('#textright').style.height = winH-58+'px';
 		}
 		else{
 			$('#index').style.height = '480px';
-			$('#tasks').style.height = '445px';
-			$('#tasktext').style.height = '360px';
+			$('#middle').style.height = '480px';
+			$('#textright').style.height = '480px';
 		}
-		if(document.documentElement.clientWidth>980){
-			$('#textright').style.width = (document.documentElement.clientWidth-400+'px');
+		if(winW>980){
+			$('#textright').style.width = (winW-400+'px');
 		}
 		else{
 			$('#textright').style.width = '580px';
 		}
+		
 		$('#edititle').style.width = parseInt($('#textright').style.width)-200+'px';
 		$('#editdate').style.width = parseInt($('#textright').style.width)-200+'px';
 		$('#edittext').style.width = parseInt($('#textright').style.width)-50+'px';
@@ -578,7 +583,7 @@ window.onload = function(){
 		tasklist[0].task = new Array(2);
 		tasklist[0].task[0]=new Object();
 		tasklist[0].task[0].name ='task1';
-		tasklist[0].task[0].item = new Array(4);
+		tasklist[0].task[0].item = new Array(5);
 		
 		tasklist[0].task[0].item[0] = '000';
 		var temp = new Object();
@@ -612,6 +617,14 @@ window.onload = function(){
 		temp.text = '完成编码工作';
 		temp.flag = '003';
 		localStorage.setItem('003', JSON.stringify(temp));
+		
+		tasklist[0].task[0].item[4] = '004';
+		temp.name = 'to-do-5';
+		temp.date = '2014-05-27';
+		temp.done = false;
+		temp.text = '完成编码工作';
+		temp.flag = '004';
+		localStorage.setItem('004', JSON.stringify(temp));
 		
 		tasklist[0].task[1]=new Object();
 		tasklist[0].task[1].name ='task2';
@@ -658,6 +671,34 @@ window.onload = function(){
 		temp.text = '第三次完成编码工作';
 		temp.flag = '202';
 		localStorage.setItem('202', JSON.stringify(temp));
+	}
+	//安全防护
+	function htmlEncode(str){
+	var newstr = '';
+	for(var i=0;i<str.length; i++){
+		c=str[i];
+		switch(c){
+		   //case '&':
+			//   newstr = newstr+ "&amp;";
+			 //  break;
+		   case '<':
+			   newstr = newstr+"&lt;";
+			   break;
+		   case '>':
+			   newstr = newstr+"&gt;";
+			   break;
+		   case '"':
+			   newstr = newstr+"&quot;";
+			   break;
+		   case ' ':
+			   newstr = newstr+"&nbsp;";
+			   break;
+		   default:
+			   newstr = newstr+c;
+			   break;
+			}
+	 	}
+	return newstr;
 	}
 	init();
 }

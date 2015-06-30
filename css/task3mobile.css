@@ -6,24 +6,21 @@
   text-decoration: none;
   list-style-type: none;
 }
-body {
-  min-width: 980px;
-  margin: 0 auto;
-  background-color: #ffffff;
-}
+
 h1 {
   background-color: #9900ff;
   color: white;
   padding: 10px;
+  text-align:center;
 }
 
 .mainframe #index {
   background-color: #ccccff;
   border-right: solid grey 1px;
-  width: 199px;
+  width:100%;
   text-indent: 10px;
-  font-size: 16px;
-  line-height: 30px;
+  font-size: 26px;
+  line-height: 40px;
   position: absolute;
 }
 #allclass {
@@ -44,10 +41,12 @@ h1 {
   background-color: #ccccff;
 }
 .item input {
-  display: none;
+ width: 20px;
+ float:right;
 }
 .onitem input {
   width: 20px;
+  float:right;
 }
 .onproject img {
   position: relative;
@@ -60,15 +59,16 @@ h1 {
   top: 3px;
 }
 .addbtn {
-  cursor: pointer;
   border-top: solid black 1px;
   width: 100%;
   position: absolute;
   bottom: 0px;
   right: 0px;
-  line-height: 30px;
+  line-height: 50px;
 }
-
+.addbtn img {
+  cursor: pointer;
+}
 #addclass {
   border:none;
   margin-right: 3px;
@@ -85,21 +85,22 @@ h1 {
 	float:right;
 	border:none;
 	position:relative;
-  	top:5px;
+  	top:7px;
 }
 #middle {
-  width: 199px;
+  width: 100%;
   border-right: solid grey 1px;
-  position: absolute;
-  left: 200px;
   background-color: #f8f9df;
+  font-size:24px;
+  display: none;
 }
 #midbtn {
   background-color: #d0e691;
 }
 .midbtn {
-  width: 50px;
+  width: 100px;
   margin: 10px 5px;
+  font-size:24px;
   border: none;
   background-color: #ffffff;
 }
@@ -125,8 +126,7 @@ h1 {
 }
 #textright {
   background-color: #e2f1f3;
-  position: absolute;
-  left: 400px;
+  display: none;
 }
 #tasktittle {
   padding: 0 50px 0 10px;
@@ -176,8 +176,8 @@ h1 {
   z-index: 101;
   display: none;
   position: fixed;
-  left: 300px;
-  top: 200px;
+  left: 30px;
+  top: 20px;
 }
 #popBox .newcls {
   margin-bottom: 10px;
@@ -198,4 +198,14 @@ h1 {
   left: 0px;
   z-index: 50;
   display: none;
+}
+.return{
+	background-color:#90F;
+	font-size:20px;
+	border:none;
+	color:white;
+	position:fixed;
+	top:25px;
+	left:15px;
+	z-index:10;
 }

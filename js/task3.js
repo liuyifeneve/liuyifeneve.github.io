@@ -10,15 +10,15 @@ window.onload = function(){
 	var histask='';//新创建一个tasks时用来存储上一个任务变量
 	var tasklistnum;
 	var subclsnum;
+	datasave();
 	
 	function init(){	
-		datasave();
 		for(var i=0; i<tasklist.length;i++){
 			var temp = tasklist[i];
 			var newcls = loaditem(temp);
 			$('#classify').appendChild(newcls);;
 		}
-		$('#allclass').childNodes[0].childNodes[0].innerHTML='所有任务'+'('+taskcount+')';
+		$('#allclass').childNodes[0].innerHTML='所有任务'+'('+taskcount+')';
 		$('#classify').childNodes[0].innerHTML='分类列表'+'('+taskcount+')';
 		//增加默认分类
 		var dftcls = tasklist[tasklist.length-1];
@@ -51,7 +51,7 @@ window.onload = function(){
 		screenadjst();
 	}
 	
-	$('#addallcls').onclick=function(){
+	$('#allclass').onclick=function(){
 		for(var i=0;i<tasklist.length;i++){
 			for(j=0;j<tasklist[i].task.length;j++){
 				if(i==0&&j==0){
@@ -61,6 +61,12 @@ window.onload = function(){
 					loadtask(tasklist[i].name,tasklist[i].task[j].name,0);
 				}
 			}
+		}
+		var winW = document.documentElement.clientWidth || document.body.clientWidth;
+		if(winW<420){
+			$('#index').style.display ='none';
+			$('#middle').style.display = 'block';
+			//$('#textright').style.display ='block';
 		}
 		
 	}
@@ -120,7 +126,7 @@ window.onload = function(){
 	}
 	
 	function loaditem(taskobj){
-		var newclass = document.createElement('ul');
+		var newclass = document.createElement('li');
 		newclass.className='project';
 		var newdiv = document.createElement('div');
 		newdiv.className= 'item';
@@ -146,8 +152,9 @@ window.onload = function(){
 		else{
 			var btn = document.createElement('input');
 			btn.type = 'submit';
-			btn.value = 'X';
+			btn.value = '';
 			btn.className='delcls';
+			btn.style.background="url('img/delete.png') no-repeat";
 			newdiv.appendChild(btn);
 		}
 		addstyle(newdiv);
@@ -173,6 +180,12 @@ window.onload = function(){
 		obj.onclick = function(){ 
 			var prtname = prt.childNodes[0].childNodes[1].innerHTML.slice(0,-3);
 			var objname = obj.childNodes[1].innerHTML.slice(0,-3);
+			var winW = document.documentElement.clientWidth || document.body.clientWidth;
+			if(winW<420){
+				$('#index').style.display ='none';
+				$('#middle').style.display = 'block';
+				//$('#textright').style.display ='none';
+			}
 			loadtask(prtname,objname,1);
 		}
 	}
@@ -237,7 +250,7 @@ window.onload = function(){
 	}
 	$('#addtask').onclick = function(){
 		if(editlock == true){
-			if(confirm("确定退出当前编辑？")){editlock == false}
+			if(confirm("确定退出当前编辑？")){editlock = false}
 			else return;
 		}
 		histask = $('#tasktittle').childNodes[2].innerHTML;
@@ -251,7 +264,7 @@ window.onload = function(){
 		$('#edititle').value='请输入任务名称';
 		$('#edititle').style.display = 'inline';
 		
-		$('#editdate').value='请以YYYY-MM-DD格式输入任务创建时间';
+		$('#editdate').value='请以YYYY-MM-DD格式输入时间';
 		$('#editdate').style.display = 'inline';
 		
 		//$('#edittext').innerHTML = '请在此输入详细内容';
@@ -262,6 +275,12 @@ window.onload = function(){
 		$('#cancel').style.display = 'inline';
 
 		editlock = true;
+		var winW = document.documentElement.clientWidth || document.body.clientWidth;
+			if(winW<420){
+				//$('#index').style.display ='none';
+				$('#middle').style.display = 'none';
+				$('#textright').style.display ='block';
+			}
 	}
 	$('#edit').onclick = function(){
 		var flag = $('#tasktittle').childNodes[2].innerHTML;
@@ -341,8 +360,8 @@ window.onload = function(){
 			loadtask(tasklist[tasklistnum].name,tasklist[tasklistnum].task[subclsnum].name,1);
 			
 			delnum = $('#classify').childNodes.length;
-			for(var i=2; i<delnum;i++){
-				$('#classify').removeChild($('#classify').childNodes[2]);;
+			for(var i=1; i<delnum;i++){
+				$('#classify').removeChild($('#classify').childNodes[1]);;
 			}
 			
 			for(var i=0; i<tasklist.length;i++){
@@ -350,7 +369,7 @@ window.onload = function(){
 				var newcls = loaditem(tasklist[i]);
 				$('#classify').appendChild(newcls);
 			}
-			$('#allclass').childNodes[0].childNodes[0].innerHTML='所有任务'+'('+taskcount+')';
+			$('#allclass').childNodes[0].innerHTML='所有任务'+'('+taskcount+')';
 			$('#classify').childNodes[0].innerHTML='分类列表'+'('+taskcount+')';
 		}
 		else{
@@ -361,10 +380,12 @@ window.onload = function(){
 	}
 	
 	$('#cancel').onclick = function(){
-		editlock = false;
 		var flag = $('#tasktittle').childNodes[2].innerHTML;
 		if(flag == ''){
-			if(confirm("确定退出当前编辑？")) addinfo(histask);
+			if(confirm("确定退出当前编辑？")){
+				addinfo(histask);
+				editlock = false;
+			}
 		}
 		else{
 			addinfo(flag);
@@ -528,6 +549,12 @@ window.onload = function(){
 					addinfo(flag);
 				}
 			}
+			var winW = document.documentElement.clientWidth || document.body.clientWidth;
+			if(winW<420){
+				//$('#index').style.display ='none';
+				$('#middle').style.display = 'none';
+				$('#textright').style.display ='block';
+			}
 		}
 	}
 	function addinfo(flag){
@@ -554,29 +581,66 @@ window.onload = function(){
 	function screenadjst(){
 		var winW = document.documentElement.clientWidth || document.body.clientWidth;
         var winH = document.documentElement.clientHeight || document.body.clientHeight;
-		
-		if(winH>537){
-			$('#index').style.height = winH-58+'px';
-			$('#middle').style.height = winH-58+'px';
-			$('#textright').style.height = winH-58+'px';
+		//alert(winW);
+		if(winW>419){
+			$('#index').style.display ='block';
+			$('#middle').style.display = 'block';
+			$('#textright').style.display ='block';
+			$('#return1').style.display ='none';
+			$('#return2').style.display ='none';
+			if(winH>537){
+				$('#index').style.height = winH-58+'px';
+				$('#middle').style.height = winH-58+'px';
+				$('#textright').style.height = winH-58+'px';
+			}
+			else{
+				$('#index').style.height = '480px';
+				$('#middle').style.height = '480px';
+				$('#textright').style.height = '480px';
+			}
+			if(winW>980){
+				$('#textright').style.width = (winW-400+'px');
+			}
+			else{
+				$('#textright').style.width = '580px';
+			}
+			
+			$('#edititle').style.width = parseInt($('#textright').style.width)-200+'px';
+			$('#editdate').style.width = parseInt($('#textright').style.width)-200+'px';
+			$('#edittext').style.width = parseInt($('#textright').style.width)-50+'px';
+			$('#edittext').style.height = '300px';
 		}
 		else{
-			$('#index').style.height = '480px';
-			$('#middle').style.height = '480px';
-			$('#textright').style.height = '480px';
+			console.log(winW);
+			$('#index').style.display ='block';
+			$('#middle').style.display = 'none';
+			$('#textright').style.display ='none';
+			$('#return1').style.display ='block';
+			$('#return2').style.display ='block';
+			$('#edititle').style.width = winW-170+'px';
+			$('#editdate').style.width = winW-170+'px';
+			$('#edittext').style.width = winW-50+'px';
+			$('#edittext').style.minHeight = winH-300+'px';
+			
+			$('#index').style.minHeight = winH-58+'px';
+			$('#middle').style.minHeight = winH-58+'px';
+			$('#textright').style.minHeight =winH-58+'px';
 		}
-		if(winW>980){
-			$('#textright').style.width = (winW-400+'px');
-		}
-		else{
-			$('#textright').style.width = '580px';
-		}
-		
-		$('#edititle').style.width = parseInt($('#textright').style.width)-200+'px';
-		$('#editdate').style.width = parseInt($('#textright').style.width)-200+'px';
-		$('#edittext').style.width = parseInt($('#textright').style.width)-50+'px';
-		$('#edittext').style.height = '300px';
 	}
+	$('#return2').onclick= function(){
+		if(editlock == true){
+			if(confirm("确定退出当前编辑？")){editlock = false}
+			else return;
+		}
+		$('#textright').style.display = 'none';
+		$('#middle').style.display = 'block';
+	}
+	
+	$('#return1').onclick = function(){
+		$('#middle').style.display = 'none';
+		$('#index').style.display = 'block';
+	}
+	
 	function datasave(){
 		tasklist[0]=new Object();
 		tasklist[0].name = '百度IFE项目';

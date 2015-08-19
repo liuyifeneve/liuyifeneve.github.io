@@ -1,0 +1,68 @@
+.items {
+	margin: 0 auto;
+	list-style: none;
+}
+
+.items li {
+	position: relative;
+	width: 150px;
+	height: auto;
+	margin: 10px;
+	float: left;
+	color: #fa96b5;
+	border-radius:50%;
+	border: 7px solid #fff; 
+	background-color:#fff;
+}
+.wrap {
+	position: absolute;
+	left: 50%;
+	margin-left: -275px;
+}
+
+/***** Winston *****/
+.projects {
+	position: relative;
+	float: left;
+	cursor: pointer;
+	display: table;
+}
+.projects h2{
+	position: absolute;
+	bottom: -100px;
+	left: 0;
+}
+.projects h2 span{
+	text-indent: 2em;
+}
+
+.projects .subicon{
+	padding: 20px;
+	display:table-cell;
+	font-size: 180px;
+	text-align: center;
+	color: inherit;
+	font-family:"Raphaelicons";
+	text-shadow:1px 1px 1px rgba(151,24,64,0.2);
+	-webkit-transition:all 0.3s linear;
+	-moz-transition:all 0.3s linear;
+	-o-transition:all 0.3s linear;
+	transition:all 0.3s linear;
+}
+
+.items li:hover{
+	background-color: #fa96b5;
+	color: #fff;
+	transform:rotate(360deg);
+	-ms-transform:rotate(360deg);
+	-moz-transform:rotate(360deg);
+	-webkit-transform:rotate(360deg);
+	-o-transform:rotate(360deg);
+}
+.items .subicon:hover{
+	transform:rotate(360deg);
+	-ms-transform:rotate(360deg);
+	-moz-transform:rotate(360deg);
+	-webkit-transform:rotate(360deg);
+	-o-transform:rotate(360deg);
+}

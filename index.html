@@ -1,72 +1,199 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" type="text/css" media="screen and (max-width: 479px)" href="css/task3mobile.css" />
-<link rel="stylesheet" type="text/css" media="screen and (min-width: 480px)" href="css/task3.css" />
-
-<title>GTD</title>
-</head>
-
-<body>
-    <h1>GTD Tools</h1>
-    <div class='mainframe'>
-        <div id='index' class='mainclass'>
-        	<ul id="allclass"><span></span></ul>      
-            <ul id="classify"><span></span></ul>  
-            <div class='addbtn'>
-                <input type="submit" id='addclass' value='' style="background:url('img/new.png') no-repeat; width:30px; height:30px;">新建分类
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <title>Hello,Evelyn</title>
+        <meta http-equiv="X-UA-Compatible" content="IE-edge,chrome=1">
         
-        <div id='middle'>
-        	<input type='submit' id='return1' class='return' value='<返回'/>
-            <div id='midbtn'>
-                 <input type='submit' id='alltask' class='midbtn' value='所有'/>
-                 <input type='submit' id='doing' class='midbtn' value='未完成'/>
-                 <input type='submit' id='done' class='midbtn' value='已完成'/>
-            </div>
-            <div id='tasks'>
-            </div>
-            
-             <div class='addbtn'>
-                <input type="submit" id='addtask' value='' style="background:url('img/new.png') no-repeat; width:30px; height:30px;">新增任务
+        <link type="text/css" rel="stylesheet" href="css/content.css">
+        <link type="text/css" rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="st-container">
+                <input type="radio" name="radio-set" checked="checked" id="st-control-1">
+                <a href="#st-panel-1">基本信息</a>
+                <input type="radio" name="radio-set" id="st-control-2">
+                <a href="#st-panel-2">教育经历</a>
+                <input type="radio" name="radio-set" id="st-control-3">
+                <a href="#st-panel-3">基本技能</a>
+                <input type="radio" name="radio-set" id="st-control-4">
+                <a href="#st-panel-4">项目实践</a>
+                <input type="radio" name="radio-set" id="st-control-5">
+                <a href="#st-panel-5">求职意向</a>
+                <div class="st-scroll">
+                    <section class="st-panel" id="st-panel-1">
+                        <div class="st-desc" data-icon="2"></div>
+                        <img class="personPic" src="img/index-bg2.jpg" alt="刘益芬" width="100%" height="100%">
+                        <section class="personInfo">
+                            <h3>刘益芬</h3>
+                            <h4>前端攻城幼狮的在线简历</h4>
+                            <ul>
+                                <li>年龄：24</li>
+                                <li>学历：硕士研究生</li>
+                                <li>户口所在地:北京</li>
+                                <li>毕业院校：北京航空航天大学</li>
+                            </ul>
+                        </section>
+                    </section>
+
+                    <section class="st-panel st-color" id="st-panel-2">
+                        <div class="st-desc" data-icon="H"></div>
+                        <img class="personPic" src="img/index-bg3.jpg" alt="北航" width="100%" height="100%">
+                        <div id="history">
+                            <div class="his-title">
+                                <div id="circle">
+                                    <div class="cmsk"></div>
+                                    <div class="circlecontent">
+                                        <div thisyear="2016" class="timeblock">
+                                            <span class="numf"></span>
+                                            <span class="nums"></span>
+                                            <span class="numt"></span>
+                                            <span class="numfo"></span>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="timeyear">YEAR</div>
+                                    </div>
+                                    <a href="#" class="clock"></a>
+                                </div>
+                            </div>
+                            
+                            <div id="content">
+                                <ul class="list">
+                                    <li>
+                                        <div class="liwrap">
+                                            <div class="lileft">
+                                                <div class="date">
+                                                    <span class="year">2013</span>
+                                                    <span class="md">0912</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="point"><b></b></div>
+                                            
+                                            <div class="liright">
+                                                <div class="histt"><a href="#">依然是北航</a></div>
+                                                <div class="hisct">为了更高的目标，选择的更为广阔的道路；为了梦中的未来，踏上了更为长远的旅程</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liwrap">
+                                            <div class="lileft">
+                                                <div class="date">
+                                                    <span class="year">2009</span>
+                                                    <span class="md">0916</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="point"><b></b></div>
+                                            
+                                            <div class="liright">
+                                                <div class="histt"><a href="#">北京市海淀区</a></div>
+                                                <div class="hisct">北京航空航天大学电子信息工程学院,大学四年生活，启航！</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liwrap">
+                                        
+                                            <div class="lileft">
+                                                <div class="date">
+                                                    <span class="year">2006</span>
+                                                    <span class="md">0901</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="point"><b></b></div>
+                                            
+                                            <div class="liright">
+                                                <div class="histt"><a href="#">北京市海淀区</a></div>
+                                                <div class="hisct">进入清华大学附属中学，开始高中生活。这是走向更广阔的人生的起点！</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liwrap">
+                                            <div class="lileft">
+                                                <div class="date">
+                                                    <span class="year">1991</span>
+                                                    <span class="md">0320</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="point"><b></b></div>
+                                            
+                                            <div class="liright">
+                                                <div class="histt"><a href="#">湖南省益阳市</a></div>
+                                                <div class="hisct">其实这个时间点是我的出生日，与教育无关。但是作为人生中最为重要的一个时间点，Mark一下！</div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="st-panel" id="st-panel-3">
+                        <div class="st-desc" data-icon="J"></div>
+                        <canvas id="skillbg"></canvas>
+                        <div class="skills">
+                            <div class="skillBlock B1">HTML</div>
+                            <div class="skillBlock B2">HTML5</div>
+                            <div class="skillBlock B3">CSS3</div>
+                            <div class="skillBlock B4"><div class="subicon" data-icon="9"></div></div>
+                            <div class="skillBlock B5"><div class="subicon" data-icon="m"></div></div>
+                            <div class="skillBlock B6">jQuery</div>
+                            <div class="skillBlock B7">CSS</div>
+                            <div class="skillBlock B8">Bootstrap</div>
+                            <div class="skillBlock B9">AngularJS</div>
+                            <div class="skillBlock B10"><div class="subicon" data-icon="S"></div></div>
+                            <div class="skillBlock B11"><div class="subicon" data-icon="b"></div></div>
+                            <div class="skillBlock B12">Javascript</div>
+                        </div> 
+                    </section>
+
+                    <section class="st-panel st-color" id="st-panel-4">
+                        <div class="st-desc" data-icon="K"></div>
+                        <div class="wrap">
+                            <main>
+                                <ul class="items">
+                                    <li class="projects">
+                                        <div class="subicon" onclick="window.open('http://liuyifeneve.github.io/GTD/');">m</div>
+                                        <h2>GTD</br><span>个人任务管理页面</span></h2>
+                                    </li>
+                                    <li class="projects">
+                                        <div class="subicon" onclick="window.open('https://github.com/liuyifeneve/ife/tree/master/task');">5</div>
+                                        <h2>百度前端技术学院</br><span>从0开始的启航</span></h2>
+                                    </li>
+                                    <li class="projects">
+                                        <div class="subicon">U</div>
+                                        <h2>NEXT</br><span>持续开发中</span></h2>
+                                    </li>
+                                </ul>
+                            </main>
+                        </div>
+
+                    </section>
+
+                    <section class="st-panel" id="st-panel-5">
+                        <div class="st-desc" data-icon="i"></div>
+                        <div class="contact">
+                            <h2>求职意向</h2>
+                            <h3>前端工程师</h3>
+                            <h3>工作地点：北京</h3>
+                            <h3>TEL：134263517699</h3>
+                            <h3>Email：liuyifenwuyi@126.com</h3>
+                            <h4>赶快联系我吧！</h4>
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
-        <div id='textright'>
-        	<input type='submit' id='return2' class='return' value='<返回'/>
-            <div id='tasktittle'>
-                <span></span><span class='invisible'></span>
-                <input type='image' id='finish' class='editbtn' src="img/finish.png" width='20px'/>
-                <input type='image' id='edit' class='editbtn' src="img/edit.png" width='20px'/>
-                <input type='text' id='edititle' class='edittask'/>
-            </div>
-            <div id='taskdate'>
-                <span></span>
-                <input type='text' id='editdate' class='edittask'/>
-            </div>
-            <div id='tasktext'>
-                <span></span>	
-                <textarea id="edittext" class='edittask'></textarea> 
-                <input type='submit' id='cancel' class='savebtn' value='取消'/>
-                <input type='submit' id='save' class='savebtn' value='保存'/>
-            </div>
-        </div>
-    </div>
-    <div id="popBox">
-            <p>请输入新建分类名称:<p>
-            <input id='newclsname' class='newcls' type="text" value="" />
-            <p>请选择父级分类:<p>
-            <select class='newcls' id='newselect'>
-                <option value="" selected>新建一个一级分类</option>
-            </select>
-            <input class='newbtn' id='newconfirm' type="button" value="确认" />
-            <input class='newbtn' id='newcancel' type="button" value="取消" />
-        </div>   
-    <div id='mask' onselectstart="retrun false">
-    </div>
-    
-<script language="javascript" type="text/javascript" src="js/task3.js"></script>
-</body>
+        <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="js/pageswitch.js"></script>
+        <script type="text/javascript" src="js/visiual.js"></script>
+    </body>
+
 </html>

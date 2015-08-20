@@ -2,10 +2,10 @@
 /* CSS Document */
 @font-face{
 	font-family:"Raphaelicons";
-	src:url('fonts/Raphaelicons-webfont.eot') format('eot'),
-		url('fonts/Raphaelicons-webfont.ttf') format('truetype'),
-		url('fonts/Raphaelicons-webfont.woff') format('woff'),
-		url('fonts/Raphaelicons-webfont.svg') format('svg');
+	src:url('fonts/icons.eot') format('eot'),
+		url('fonts/icons.ttf') format('truetype'),
+		url('fonts/iconst.woff') format('woff'),
+		url('fonts/icons.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

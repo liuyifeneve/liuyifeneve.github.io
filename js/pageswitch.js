@@ -167,3 +167,10 @@ $(function(){
 		'direction' : 'horizontal'
 	});
 });
+
+$(document).ready(function() {
+  $('#st-panel-3').particleground({
+    dotColor: '#e23a6e',
+    lineColor: '#fa96b5'
+  });
+});

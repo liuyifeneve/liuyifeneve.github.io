@@ -212,7 +212,7 @@
 .skills{
 	position: absolute;
 	left: 50%;
-	top: 25%;
+	top: 20%;
 	width: 800px;
 	height: 500px;
 	margin-left:-400px;
@@ -220,7 +220,8 @@
 	display: table;
 }
 .skillBlock{
-	border: 2px solid #3A5FCD;
+	border: 2px solid #CD5C5C;
+	border-radius:5%;
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;
@@ -515,6 +516,64 @@
 	}
 }
 
+#st-control-2:checked ~ .st-scroll #st-panel-2 .lileft,
+#st-control-2:checked ~ .st-scroll #st-panel-2 .liright{
+	-webkit-animation:moveLeft 1s ease-in-out 0.4s backwards;
+	-moz-animation:moveLeft 1s ease-in-out 0.4s backwards;
+	-o-animation:moveLeft 1s ease-in-out 0.4s backwards;
+	-ms-animation:moveLeft 1s ease-in-out 0.4s backwards;
+	animation:moveLeft 1s ease-in-out 0.4s backwards;
+}
+@-webkit-keyframes moveLeft{
+	0%{
+		-webkit-transform:translateX(-40px);
+		opacity: 0;
+	}
+	100%{
+		-webkit-transform:translateX(0px);
+		opacity: 1;
+	}
+}
+@-moz-keyframes moveLeft{
+	0%{
+		-moz-transform:translateX(-40px);
+		opacity: 0;
+	}
+	100%{
+		-moz-transform:translateX(0px);
+		opacity: 1;
+	}
+}
+@-o-keyframes moveLeft{
+	0%{
+		-o-transform:translateX(-40px);
+		opacity: 0;
+	}
+	100%{
+		-o-transform:translateX(0px);
+		opacity: 1;
+	}
+}
+@-ms-keyframes moveLeft{
+	0%{
+		-ms-transform:translateX(-40px);
+		opacity: 0;
+	}
+	100%{
+		-ms-transform:translateX(0px);
+		opacity: 1;
+	}
+}
+@keyframes moveLeft{
+	0%{
+		transform:translateX(-40px);
+		opacity: 0;
+	}
+	100%{
+		transform:translateX(0px);
+		opacity: 1;
+	}
+}
 .items {
 	margin: 0 auto;
 	list-style: none;
@@ -532,7 +591,8 @@
 	background-color:#fff;
 }
 .wrap {
-	width:60%;
+	width:70%;
+	-webkit-width:60%;
 	margin:200px auto; 
 }
 
